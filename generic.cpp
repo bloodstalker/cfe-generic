@@ -72,7 +72,9 @@ class CalledVar : public MatchFinder::MatchCallback {
   public:
     CalledVar (Rewriter &Rewrite) : Rewrite(Rewrite) {}
 
-    virtual void run(const MatchFinder::MatchResult &MR) {}
+    virtual void run(const MatchFinder::MatchResult &MR) {
+      const VarDecl* VD = MR.Nodes.getNodeAs<clang::VarDecl>("vardecl");
+    }
 
   private:
     Rewriter &Rewrite;
